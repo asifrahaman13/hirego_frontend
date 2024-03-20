@@ -39,7 +39,7 @@ const config: Config = {
         "single-choice":"#FFEFCB",
         "Lt-Aqua":"#CFEDED",
         "Save-Blue":"#2B6CE1",
-        "Sec-Amber":"#E97451",
+        "Sec-Amber":"#EC765F",
         "Lt-Purple":"#E5E6FF",
         "Lime-Green":"#DFF4E6",
         "Footer-Dark":"#17222F"

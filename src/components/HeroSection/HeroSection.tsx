@@ -8,7 +8,7 @@ import { Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { callsToAction, navigation } from "@/constants/static/HeroSection/HeroSectionStatic";
 import Banner from "./Banner";
-import UseCase from './UseCase';
+import UseCase from "./UseCase";
 import FooterComponent from "./FooterComponent";
 
 export default function HeroSection() {
@@ -34,7 +34,7 @@ export default function HeroSection() {
             {navigation.map((item) => (
               <>
                 <Popover className="relative">
-                  <Popover.Button className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+                  <Popover.Button className="inline-flex outline-none items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                     <span>{item.name}</span>
                     <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
                   </Popover.Button>
@@ -130,21 +130,16 @@ export default function HeroSection() {
             }}
           />
         </div>
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-          <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-            <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-              Announcing our next round of funding.{" "}
-              <a href="#" className="font-semibold text-indigo-600">
-                <span className="absolute inset-0" aria-hidden="true" />
-                Read more <span aria-hidden="true">&rarr;</span>
-              </a>
-            </div>
-          </div>
-          <div className="text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl font-sans">Hire top talent to grow business to 10x</h1>
-            <p className="mt-6 text-medium leading-8 text-gray-600">
-              Out main motive is to help manage the entire ecosystem of your company under one roof.  Manage your organization end to
-              end with our platform.
+        
+        <div className="mx-auto max-w-4xl py-32 sm:py-48 lg:py-16">
+
+          
+          <div className="text-center flex  flex-col items-center gap-8">
+            <h1 className="text-6xl font-bold">Achieve unparalleled growth with our top talent solutions. </h1>
+            <div className="max-w-2xl bg-Sec-Amber py-3 -rotate-3">    <h1 className="text-4xl font-bold rotate-3  text-white sm:text-6xl font-sans transform ">Hire top talent to grow business to 10x</h1></div>
+        
+            <p className="max-w-xl mt-6 text-medium leading-8 text-gray-600">
+              Out main motive is to help manage the entire ecosystem of your company under one roof. Manage your organization end to end with our platform.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
@@ -165,13 +160,13 @@ export default function HeroSection() {
       </div>
 
       <div>
-        <Banner/>
+        <Banner />
       </div>
       <div>
-        <UseCase/>
+        <UseCase />
       </div>
       <div>
-        <FooterComponent/>
+        <FooterComponent />
       </div>
     </div>
   );
