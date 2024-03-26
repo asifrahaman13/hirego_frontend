@@ -7,6 +7,7 @@ function classNames(...classes: string[]) {
 
 const InternshipLayout = ({ children }: PropsWithChildren) => {
   const tabs = [
+    { name: "Potential candidates", href: "#", current: false },
     { name: "Applied", href: "#", current: false },
     { name: "Phone Screening", href: "#", current: false },
     { name: "Interview", href: "#", current: true },
@@ -22,7 +23,7 @@ const InternshipLayout = ({ children }: PropsWithChildren) => {
 
   return (
     <>
-      <div className="border-b border-gray-200 pb-5 sm:pb-0 xl:px-11 py-1">
+      <div className="border-b fixed top-0 w-screen z-30 bg-white border-gray-200 pb-5 sm:pb-0 xl:px-11 py-1">
         <div className="">
           <div className="sm:hidden">
             <label htmlFor="current-tab" className="sr-only">
