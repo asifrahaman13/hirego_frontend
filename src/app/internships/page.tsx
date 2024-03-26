@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import AllInternshipSeekers from "./InternshipComponents/AllInternshipSeekers";
 
 const page = () => {
   return (
-    <div>page</div>
-  )
-}
+    <>
+      <AllInternshipSeekers />
+    </>
+  );
+};
 
-export default page
+export default page;

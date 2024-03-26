@@ -25,12 +25,19 @@ const jobs = [
   { name: "Internships", description: "Get a better understanding of your traffic", href: "/internships", icon: ChartPieIcon },
   { name: "Full time jobs", description: "Speak directly to your customers", href: "/fulltime", icon: CursorArrowRaysIcon },
   { name: "Contracts", description: "Your customers' data will be safe and secure", href: "/contracts", icon: FingerPrintIcon },
+  { name: "Hired for small businesss", description: "Connect with third-party tools", href: "/hireforbusiness", icon: SquaresPlusIcon },
+];
+
+const works = [
+  { name: "Interns", description: "Get a better understanding of your traffic", href: "/internships", icon: ChartPieIcon },
+  { name: "Full tiem job seekers", description: "Speak directly to your customers", href: "/fulltime", icon: CursorArrowRaysIcon },
+  { name: "Freelancers", description: "Your customers' data will be safe and secure", href: "/contracts", icon: FingerPrintIcon },
   { name: "Hire for your businesss", description: "Connect with third-party tools", href: "/hireforbusiness", icon: SquaresPlusIcon },
 ];
 
 const navigation = [
   { name: "Jobs", href: "#", solutions: jobs },
-  { name: "Fore Hire", href: "#", solutions: jobs },
+  { name: "Fore Hire", href: "#", solutions: works },
   { name: "Features", href: "#", solutions: solutions },
   { name: "Company", href: "#", solutions: company },
 ];
@@ -84,4 +91,106 @@ const posts = [
   // More posts...
 ];
 
-export { solutions, callsToAction, navigation, posts };
+const people = [
+    {
+      name: 'Lindsay Walton',
+      title: 'Front-end Developer',
+      department: 'Optimization',
+      email: 'lindsay.walton@example.com',
+      role: 'Member',
+      image:
+        'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+      name: 'John Doe',
+      title: 'Back-end Developer',
+      department: 'Engineering',
+      email: 'john.doe@example.com',
+      role: 'Member',
+      image:
+        'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+      name: 'Jane Smith',
+      title: 'UI/UX Designer',
+      department: 'Design',
+      email: 'jane.smith@example.com',
+      role: 'Member',
+      image:
+        'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+      name: 'Alex Johnson',
+      title: 'Product Manager',
+      department: 'Product',
+      email: 'alex.johnson@example.com',
+      role: 'Member',
+      image:
+        'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+      name: 'Sarah Lee',
+      title: 'Marketing Specialist',
+      department: 'Marketing',
+      email: 'sarah.lee@example.com',
+      role: 'Member',
+      image:
+        'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+      {
+      name: 'Lindsay Walton',
+      title: 'Front-end Developer',
+      department: 'Optimization',
+      email: 'lindsay.walton@example.com',
+      role: 'Member',
+      image:
+        'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+      name: 'John Doe',
+      title: 'Back-end Developer',
+      department: 'Engineering',
+      email: 'john.doe@example.com',
+      role: 'Member',
+      image:
+        'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+      name: 'Jane Smith',
+      title: 'UI/UX Designer',
+      department: 'Design',
+      email: 'jane.smith@example.com',
+      role: 'Member',
+      image:
+        'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+      {
+      name: 'Lindsay Walton',
+      title: 'Front-end Developer',
+      department: 'Optimization',
+      email: 'lindsay.walton@example.com',
+      role: 'Member',
+      image:
+        'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+      name: 'John Doe',
+      title: 'Back-end Developer',
+      department: 'Engineering',
+      email: 'john.doe@example.com',
+      role: 'Member',
+      image:
+        'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+    {
+      name: 'Jane Smith',
+      title: 'UI/UX Designer',
+      department: 'Design',
+      email: 'jane.smith@example.com',
+      role: 'Member',
+      image:
+        'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+];
+
+export { solutions, callsToAction, navigation, posts , people};
