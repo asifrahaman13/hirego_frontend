@@ -1,13 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-
-import { team } from "@/constants/static/HeroSection/HeroSectionStatic";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { LinkIcon, PlusIcon, QuestionMarkCircleIcon } from "@heroicons/react/20/solid";
+import { LinkIcon, QuestionMarkCircleIcon } from "@heroicons/react/20/solid";
 
-const InternDetails = () => {
+interface InternDetailsProps {
+  blur: boolean;
+}
+
+const InternDetails: React.FC<InternDetailsProps> = ({ blur }) => {
   const [open, setOpen] = useState(true);
 
   return (
@@ -28,12 +30,12 @@ const InternDetails = () => {
                   leaveFrom="translate-x-0"
                   leaveTo="translate-x-full"
                 >
-                  <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                    <form className="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl">
+                  <Dialog.Panel className="pointer-events-auto w-screen max-w-4xl backdrop-blur-2xl">
+                    <form className="flex h-full flex-col divide-y divide-gray-200  bg-white shadow-xl">
                       <div className="h-0 flex-1 overflow-y-auto">
-                        <div className="bg-indigo-700 px-4 py-6 sm:px-6">
+                        <div className="px-4 py-6 sm:px-6">
                           <div className="flex items-center justify-between">
-                            <Dialog.Title className="text-base font-semibold leading-6 text-white">New Project</Dialog.Title>
+                            <Dialog.Title className="leading-6 text-xl font-semibold font-sans">Tom smith</Dialog.Title>
                             <div className="ml-3 flex h-7 items-center">
                               <button
                                 type="button"
@@ -47,59 +49,48 @@ const InternDetails = () => {
                             </div>
                           </div>
                           <div className="mt-1">
-                            <p className="text-sm text-indigo-300">Get started by filling in the information below to create your new project.</p>
+                            <p className="text-sm ">Software developer intern</p>
                           </div>
                         </div>
                         <div className="flex flex-1 flex-col justify-between">
                           <div className="divide-y divide-gray-200 px-4 sm:px-6">
                             <div className="space-y-6 pb-5 pt-6">
                               <div>
-                                <label htmlFor="project-name" className="block text-sm font-medium leading-6 text-gray-900">
-                                  Project name
+                                <label htmlFor="project-name" className="block text-medium  font-semibold leading-6">
+                                  About me
                                 </label>
                                 <div className="mt-2">
-                                  <input
-                                    type="text"
-                                    name="project-name"
-                                    id="project-name"
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                  />
-                                </div>
-                              </div>
-                              <div>
-                                <label htmlFor="description" className="block text-sm font-medium leading-6 text-gray-900">
-                                  Description
-                                </label>
-                                <div className="mt-2">
-                                  <textarea
-                                    id="description"
-                                    name="description"
-                                    rows={4}
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    defaultValue={""}
-                                  />
-                                </div>
-                              </div>
-                              <div>
-                                <h3 className="text-sm font-medium leading-6 text-gray-900">Team Members</h3>
-                                <div className="mt-2">
-                                  <div className="flex space-x-2">
-                                    {team.map((person) => (
-                                      <a key={person.email} href={person.href} className="relative rounded-full hover:opacity-75">
-                                        <img className="inline-block h-8 w-8 rounded-full" src={person.imageUrl} alt={person.name} />
-                                      </a>
-                                    ))}
-                                    <button
-                                      type="button"
-                                      className="relative inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border-2 border-dashed border-gray-200 bg-white text-gray-400 hover:border-gray-300 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                                    >
-                                      <span className="absolute -inset-2" />
-                                      <span className="sr-only">Add team member</span>
-                                      <PlusIcon className="h-5 w-5" aria-hidden="true" />
-                                    </button>
+                                  <div id="project-name" className=" w-full rounded-md border-0 text-justify ">
+                                    I am a passionate software developer. I am currently working as a software developer intern at the Foos foundation. I am interested in the new tools and
+                                    technologies coming every months! I am a passionate software developer. I am currently working as a software developer intern at the Foos foundation. I am
+                                    interested in the new tools and technologies coming every months! I am a passionate software developer. I am currently working as a software developer intern at the
+                                    Foos foundation. I am interested in the new tools and technologies coming every months!
                                   </div>
                                 </div>
                               </div>
+                              <div>
+                                <label htmlFor="description" className="block text-medium  font-semibold leading-6 ">
+                                  Projects done
+                                </label>
+                                <div className="mt-2">
+                                  {" "}
+                                  <div id="project-name" className=" w-full rounded-md border-0 text-justify ">
+                                    I am a passionate software developer. I am currently working as a software developer intern at the Foos foundation. I am interested in the new tools and
+                                    technologies coming every months! I am a passionate software developer. I am currently working as a software developer intern at the Foos foundation. I am
+                                    interested in the new tools and technologies coming every months! I am a passionate software developer. I am currently working as a software developer intern at the
+                                    Foos foundation. I am interested in the new tools and technologies coming every months!
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div className="flex flex-row gap-2 text-msm flex-wrap">
+                                <div className="bg-yellow-300 rounded-lg px-2 py-1">HTML</div>
+                                <div className="bg-red-300 rounded-lg px-2 py-1">Python</div>
+                                <div className="bg-green-300 rounded-lg px-2 py-1">JavaScript</div>
+                                <div className="bg-blue-300 rounded-lg px-2 py-1">Dart</div>
+                                <div className="bg-red-300 rounded-lg px-2 py-1">Npm package</div>
+                              </div>
+                              <div></div>
                               <fieldset>
                                 <legend className="text-sm font-medium leading-6 text-gray-900">Privacy</legend>
                                 <div className="mt-2 space-y-4">
@@ -195,7 +186,7 @@ const InternDetails = () => {
                         </button>
                         <button
                           type="submit"
-                          className="ml-4 inline-flex justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                          className="ml-4 inline-flex justify-center rounded-md bg-Pri-Dark px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         >
                           Save
                         </button>

@@ -2,11 +2,7 @@
 "use client";
 import { people } from "@/constants/static/HeroSection/HeroSectionStatic";
 import { Switch } from "@headlessui/react";
-import { team } from "@/constants/static/HeroSection/HeroSectionStatic";
-import { Fragment, useState } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
-import { LinkIcon, PlusIcon, QuestionMarkCircleIcon } from "@heroicons/react/20/solid";
+import { useState } from "react";
 import InternDetails from "./InternDetails";
 
 function classNames(...classes: string[]) {
@@ -15,6 +11,10 @@ function classNames(...classes: string[]) {
 export default function AllInternshipSeekers() {
   const [enabled, setEnabled] = useState(false);
   const [open, setOpen] = useState(true);
+
+  const [blur, setBlur] = useState(false);
+
+
   return (
     <div className="flex w-screen h-screen py-14  flex-row bg-gray-50">
       <div className="w-3/4  mt-8 flow-root overflow-y-scroll h-full no-scrollbar">
@@ -22,7 +22,7 @@ export default function AllInternshipSeekers() {
           <div className="flex flex-col w-full gap-4">
             {people.map((person) => (
               <>
-                <button className="bg-white w-full border gap-4 flex flex-col rounded-lg px-4 py-4">
+                <button className="bg-white w-full border gap-4 flex flex-col rounded-lg px-4 py-4" onClick={()=>{setBlur(true)}}>
                   <div key={person.email} className="  flex gap-8 ">
                     <div className="w-full  p-3 flex flex-row gap-2 items-center">
                       <img className="h-11  rounded-full" src={person.image} alt="" />
@@ -34,13 +34,12 @@ export default function AllInternshipSeekers() {
                       <span className="bg-green-50 px-2 py-1 w-12 text-xs font-medium text-green-700 rounded-md ring-1 ring-inset ring-green-600/20 ">Active</span>
                     </div>
                   </div>
-        
+
                   <div className="flex  flex-row justify-start items-start text-start  ">
                     I am a self taught developers. I love to spend most of the time in coding and hackathon. Learning new technology is my passion. Currently I am in my 3rd year of college and I am
-                    looking for internship in web development. I am a self taught developers. I love to spend most of the time in coding and hackathon. Learning new technology is my passion. Currently
-                    I am in my 3rd year of college and I am looking for internship in web development.
+                    ....
                   </div>
-                            <div className="flex flex-row gap-2 text-msm flex-wrap">
+                  <div className="flex flex-row gap-2 text-msm flex-wrap">
                     <div className="bg-yellow-300 rounded-lg px-2 py-1">HTML</div>
                     <div className="bg-red-300 rounded-lg px-2 py-1">Python</div>
                     <div className="bg-green-300 rounded-lg px-2 py-1">JavaScript</div>
@@ -113,7 +112,7 @@ export default function AllInternshipSeekers() {
           </Switch>
         </div>
       </div>
-      <InternDetails />
+      <InternDetails blur={blur}/>
     </div>
   );
 }
