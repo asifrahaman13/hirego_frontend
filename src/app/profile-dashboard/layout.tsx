@@ -33,7 +33,7 @@ const Layout = ({ children }: PropsWithChildren) => {
 
   return (
     <>
-      <div>
+      <div className="bg-gray-50">
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as="div" className="relative z-50 lg:hidden" onClose={setSidebarOpen}>
             <Transition.Child
