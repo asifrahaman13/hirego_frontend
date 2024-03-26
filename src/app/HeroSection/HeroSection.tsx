@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import { useState } from "react";
-import { Dialog } from "@headlessui/react";
+import { Dialog, Menu } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
@@ -10,6 +10,14 @@ import { callsToAction, navigation } from "@/constants/static/HeroSection/HeroSe
 
 import Link from "next/link";
 
+const userNavigation = [
+  { name: "Your profile", href: "/profile-dashboard" },
+  { name: "Sign out", href: "#" },
+];
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(" ");
+}
+
 export default function HeroSection() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -17,10 +25,10 @@ export default function HeroSection() {
     <header className="sticky bg-white backdrop-filter backdrop-blur-xl inset-x-0 top-0 z-50">
       <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
+          <Link href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
             <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
-          </a>
+          </Link>
         </div>
         <div className="flex lg:hidden">
           <button type="button" className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" onClick={() => setMobileMenuOpen(true)}>
@@ -58,10 +66,10 @@ export default function HeroSection() {
                               <item.icon className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" aria-hidden="true" />
                             </div>
                             <div>
-                              <a href={item.href} className="font-semibold text-gray-900">
+                              <Link href={item.href} className="font-semibold text-gray-900">
                                 {item.name}
                                 <span className="absolute inset-0" />
-                              </a>
+                              </Link>
                               <p className="mt-1 text-gray-600">{item.description}</p>
                             </div>
                           </div>
@@ -69,10 +77,10 @@ export default function HeroSection() {
                       </div>
                       <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
                         {callsToAction.map((item) => (
-                          <a key={item.name} href={item.href} className="flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100">
+                          <Link key={item.name} href={item.href} className="flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100">
                             <item.icon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
                             {item.name}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -87,19 +95,57 @@ export default function HeroSection() {
           </div>
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          <Link href="#" className="text-sm font-semibold leading-6 text-gray-900">
             Log in <span aria-hidden="true">&rarr;</span>
-          </a>
+          </Link>
+
+          <Menu as="div" className="relative">
+            <Menu.Button className="-m-1.5 flex items-center p-1.5">
+              <span className="sr-only">Open user menu</span>
+              <img
+                className="h-8 w-8 rounded-full bg-gray-50"
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                alt=""
+              />
+              <span className="hidden lg:flex lg:items-center">
+                <span className="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">
+                  Profile
+                </span>
+                <ChevronDownIcon className="ml-2 h-5 w-5 text-gray-400" aria-hidden="true" />
+              </span>
+            </Menu.Button>
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-100"
+              enterFrom="transform opacity-0 scale-95"
+              enterTo="transform opacity-100 scale-100"
+              leave="transition ease-in duration-75"
+              leaveFrom="transform opacity-100 scale-100"
+              leaveTo="transform opacity-0 scale-95"
+            >
+              <Menu.Items className="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
+                {userNavigation.map((item) => (
+                  <Menu.Item key={item.name}>
+                    {({ active }) => (
+                      <Link href={item.href} className={classNames(active ? "bg-gray-50" : "", "block px-3 py-1 text-sm leading-6 text-gray-900")}>
+                        {item.name}
+                      </Link>
+                    )}
+                  </Menu.Item>
+                ))}
+              </Menu.Items>
+            </Transition>
+          </Menu>
         </div>
       </nav>
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
         <div className="fixed inset-0 z-50" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
+            <Link href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
               <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
-            </a>
+            </Link>
             <button type="button" className="-m-2.5 rounded-md p-2.5 text-gray-700" onClick={() => setMobileMenuOpen(false)}>
               <span className="sr-only">Close menu</span>
               <XMarkIcon className="h-6 w-6" aria-hidden="true" />
@@ -109,15 +155,15 @@ export default function HeroSection() {
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
                 {navigation.map((item) => (
-                  <a key={item.name} href={item.href} className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                  <Link key={item.name} href={item.href} className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
               <div className="py-6">
-                <a href="#" className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                <Link href="#" className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                   Log in
-                </a>
+                </Link>
               </div>
             </div>
           </div>

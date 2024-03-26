@@ -2,11 +2,11 @@ import { PhoneIcon, PlayCircleIcon } from "@heroicons/react/20/solid";
 import { ArrowPathIcon, ChartPieIcon, CursorArrowRaysIcon, FingerPrintIcon, SquaresPlusIcon } from "@heroicons/react/24/outline";
 
 const solutions = [
-  { name: "Analytics", description: "Get a better understanding of your traffic", href: "#", icon: ChartPieIcon },
-  { name: "Engagement", description: "Speak directly to your customers", href: "#", icon: CursorArrowRaysIcon },
-  { name: "Security", description: "Your customers' data will be safe and secure", href: "#", icon: FingerPrintIcon },
-  { name: "Integrations", description: "Connect with third-party tools", href: "#", icon: SquaresPlusIcon },
-  { name: "Automations", description: "Build strategic funnels that will convert", href: "#", icon: ArrowPathIcon },
+  { name: "Analytics", description: "Get a better understanding of your traffic", href: "/analytics", icon: ChartPieIcon },
+  { name: "Engagement", description: "Speak directly to your customers", href: "/engagement", icon: CursorArrowRaysIcon },
+  { name: "Security", description: "Your customers' data will be safe and secure", href: "/security", icon: FingerPrintIcon },
+  { name: "Integrations", description: "Connect with third-party tools", href: "/integrations", icon: SquaresPlusIcon },
+  { name: "Automations", description: "Build strategic funnels that will convert", href: "/automations", icon: ArrowPathIcon },
 ];
 
 const callsToAction = [
@@ -14,11 +14,25 @@ const callsToAction = [
   { name: "Contact sales", href: "#", icon: PhoneIcon },
 ];
 
+const company = [
+  { name: "About us", description: "Get a better understanding of your traffic", href: "/about", icon: ChartPieIcon },
+  { name: "Privacy policy", description: "Speak directly to your customers", href: "/privacy", icon: CursorArrowRaysIcon },
+  { name: "Contact us", description: "Your customers' data will be safe and secure", href: "/contact", icon: FingerPrintIcon },
+  { name: "Team", description: "Connect with third-party tools", href: "/team", icon: SquaresPlusIcon },
+];
+
+const jobs = [
+  { name: "Internships", description: "Get a better understanding of your traffic", href: "/internships", icon: ChartPieIcon },
+  { name: "Full time jobs", description: "Speak directly to your customers", href: "/fulltime", icon: CursorArrowRaysIcon },
+  { name: "Contracts", description: "Your customers' data will be safe and secure", href: "/contracts", icon: FingerPrintIcon },
+  { name: "Hire for your businesss", description: "Connect with third-party tools", href: "/hireforbusiness", icon: SquaresPlusIcon },
+];
+
 const navigation = [
-  { name: "Product", href: "#", solutions: solutions },
+  { name: "Jobs", href: "#", solutions: jobs },
+  { name: "Fore Hire", href: "#", solutions: jobs },
   { name: "Features", href: "#", solutions: solutions },
-  { name: "Marketplace", href: "#", solutions: solutions },
-  { name: "Company", href: "#", solutions: solutions },
+  { name: "Company", href: "#", solutions: company },
 ];
 const posts = [
   {
