@@ -14,7 +14,6 @@ export default function AllInternshipSeekers() {
 
   const [blur, setBlur] = useState(false);
 
-
   return (
     <div className="flex w-screen h-screen py-14  flex-row bg-gray-50">
       <div className="w-3/4  mt-8 flow-root overflow-y-scroll h-full no-scrollbar">
@@ -22,7 +21,12 @@ export default function AllInternshipSeekers() {
           <div className="flex flex-col w-full gap-4">
             {people.map((person) => (
               <>
-                <button className="bg-white w-full border gap-4 flex flex-col rounded-lg px-4 py-4" onClick={()=>{setBlur(true)}}>
+                <button
+                  className="bg-white w-full border gap-4 flex flex-col rounded-lg px-4 py-4"
+                  onClick={() => {
+                    setBlur(true);
+                  }}
+                >
                   <div key={person.email} className="  flex gap-8 ">
                     <div className="w-full  p-3 flex flex-row gap-2 items-center">
                       <img className="h-11  rounded-full" src={person.image} alt="" />
@@ -112,7 +116,7 @@ export default function AllInternshipSeekers() {
           </Switch>
         </div>
       </div>
-      <InternDetails blur={blur}/>
+      <InternDetails blur={blur} />
     </div>
   );
 }

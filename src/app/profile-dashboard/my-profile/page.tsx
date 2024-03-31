@@ -2,7 +2,7 @@ import React from "react";
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 const page = () => {
   return (
-    <div>
+    <div className="bg-white px-12">
       <form>
         <div className="space-y-12 ">
           <div className="border-b border-gray-900/10 pb-12">

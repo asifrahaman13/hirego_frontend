@@ -206,7 +206,7 @@ const Layout = ({ children }: PropsWithChildren) => {
         </div>
 
         <div className="lg:pl-72 bg-gray-50">
-          <div className="sticky top-0 z-40 lg:mx-auto lg:max-w-7xl lg:px-8">
+          <div className="sticky top-0 z-40 lg:mx-auto ">
             <div className="flex h-16 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-0 lg:shadow-none">
               <button type="button" className="-m-2.5 p-2.5 text-gray-700 lg:hidden" onClick={() => setSidebarOpen(true)}>
                 <span className="sr-only">Open sidebar</span>
@@ -283,7 +283,7 @@ const Layout = ({ children }: PropsWithChildren) => {
           </div>
 
           <main className="py-10 bg-gray-50">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 bg-gray-50">{children}</div>
+            <div className="mx-auto max-w-7xl bg-gray-50">{children}</div>
           </main>
         </div>
       </div>
