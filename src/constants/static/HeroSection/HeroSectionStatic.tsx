@@ -1,5 +1,6 @@
 import { PhoneIcon, PlayCircleIcon } from "@heroicons/react/20/solid";
 import { ArrowPathIcon, ChartPieIcon, CursorArrowRaysIcon, FingerPrintIcon, SquaresPlusIcon } from "@heroicons/react/24/outline";
+import { AcademicCapIcon, BanknotesIcon, CheckBadgeIcon, ClockIcon, ReceiptRefundIcon, UsersIcon } from "@heroicons/react/24/outline";
 
 const solutions = [
   { name: "Analytics", description: "Get a better understanding of your traffic", href: "/analytics", icon: ChartPieIcon },
@@ -36,8 +37,6 @@ const works = [
 ];
 
 const navigation = [
-  { name: "Jobs", href: "#", solutions: jobs },
-  { name: "Fore Hire", href: "#", solutions: works },
   { name: "Features", href: "#", solutions: solutions },
   { name: "Company", href: "#", solutions: company },
 ];
@@ -228,4 +227,50 @@ const team = [
   },
 ];
 
-export { solutions, callsToAction, navigation, posts , people, team};
+
+const actions = [
+  {
+    title: "Request time off",
+    href: "#",
+    icon: ClockIcon,
+    iconForeground: "text-teal-700",
+    iconBackground: "bg-teal-50",
+  },
+  {
+    title: "Benefits",
+    href: "#",
+    icon: CheckBadgeIcon,
+    iconForeground: "text-purple-700",
+    iconBackground: "bg-purple-50",
+  },
+  {
+    title: "Schedule a one-on-one",
+    href: "#",
+    icon: UsersIcon,
+    iconForeground: "text-sky-700",
+    iconBackground: "bg-sky-50",
+  },
+  {
+    title: "Payroll",
+    href: "#",
+    icon: BanknotesIcon,
+    iconForeground: "text-yellow-700",
+    iconBackground: "bg-yellow-50",
+  },
+  {
+    title: "Submit an expense",
+    href: "#",
+    icon: ReceiptRefundIcon,
+    iconForeground: "text-rose-700",
+    iconBackground: "bg-rose-50",
+  },
+  {
+    title: "Training",
+    href: "#",
+    icon: AcademicCapIcon,
+    iconForeground: "text-indigo-700",
+    iconBackground: "bg-indigo-50",
+  },
+];
+
+export { solutions, callsToAction, navigation, posts , people, team , actions};
