@@ -1,19 +1,43 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { LinkIcon, QuestionMarkCircleIcon } from "@heroicons/react/20/solid";
+import { InternshipRepository } from "@/infrastructure/repositories/InternshipRepository";
+import { InternshipService } from "@/domain/usecases/InternshipService";
+import { Job } from "@/domain/entities/InternshipEntity";
+
+const internshipRepository = new InternshipRepository();
+const internshipInterface = new InternshipService(internshipRepository);
 
 interface InternDetailsProps {
   blur: boolean;
-  username: string;
-  should_open: boolean
+  jobID: string;
+  should_open: boolean;
 }
 
-const InternDetails: React.FC<InternDetailsProps> = ({ blur, username , should_open}) => {
+const InternDetails: React.FC<InternDetailsProps> = ({ blur, jobID, should_open }) => {
+  console.log(jobID)
   const [open, setOpen] = useState(true);
+  const [internship, setInternship] = useState<Job | null>(null);
 
+  useEffect(() => {
+    async function getInsternDetails() {
+      try {
+        const access_token = localStorage.getItem("access_token") || null;
+        if (access_token) {
+          const response = await internshipInterface.getInternshipById(access_token, jobID);
+          if (response?.code === 200) {
+            setInternship(response.data);
+          }
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getInsternDetails();
+  }, [jobID]);
 
   return (
     <>
@@ -38,7 +62,7 @@ const InternDetails: React.FC<InternDetailsProps> = ({ blur, username , should_o
                       <div className="h-0 flex-1 overflow-y-auto">
                         <div className="px-4 py-6 sm:px-6">
                           <div className="flex items-center justify-between">
-                            <Dialog.Title className="leading-6 text-xl font-semibold font-sans">{username}</Dialog.Title>
+                            <Dialog.Title className="leading-6 text-xl font-semibold font-sans">{internship?.title}</Dialog.Title>
                             <div className="ml-3 flex h-7 items-center">
                               <button
                                 type="button"
@@ -64,10 +88,7 @@ const InternDetails: React.FC<InternDetailsProps> = ({ blur, username , should_o
                                 </label>
                                 <div className="mt-2">
                                   <div id="project-name" className=" w-full rounded-md border-0 text-justify ">
-                                    I am a passionate software developer. I am currently working as a software developer intern at the Foos foundation. I am interested in the new tools and
-                                    technologies coming every months! I am a passionate software developer. I am currently working as a software developer intern at the Foos foundation. I am
-                                    interested in the new tools and technologies coming every months! I am a passionate software developer. I am currently working as a software developer intern at the
-                                    Foos foundation. I am interested in the new tools and technologies coming every months!
+                                  {internship?.description} 
                                   </div>
                                 </div>
                               </div>

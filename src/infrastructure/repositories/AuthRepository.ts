@@ -12,7 +12,7 @@ class AuthRepository implements AuthInterface {
       password,
     });
 
-    console.log(response)
+    console.log(response);
 
     if (response.status === 200) {
       return new SuccessEntity(200, response.data.data);
