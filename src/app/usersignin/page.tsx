@@ -20,7 +20,7 @@ const Page = () => {
       const login_response = await auth_interface.login( username.username, username.password);
 
       if (login_response && login_response.code === 200) {
-        console.log(login_response.token)
+
         localStorage.setItem('access_token', login_response.token)
         window.location.href = "/profile-dashboard";
       }

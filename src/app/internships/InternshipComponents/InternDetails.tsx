@@ -7,10 +7,13 @@ import { LinkIcon, QuestionMarkCircleIcon } from "@heroicons/react/20/solid";
 
 interface InternDetailsProps {
   blur: boolean;
+  username: string;
+  should_open: boolean
 }
 
-const InternDetails: React.FC<InternDetailsProps> = ({ blur }) => {
+const InternDetails: React.FC<InternDetailsProps> = ({ blur, username , should_open}) => {
   const [open, setOpen] = useState(true);
+
 
   return (
     <>
@@ -35,7 +38,7 @@ const InternDetails: React.FC<InternDetailsProps> = ({ blur }) => {
                       <div className="h-0 flex-1 overflow-y-auto">
                         <div className="px-4 py-6 sm:px-6">
                           <div className="flex items-center justify-between">
-                            <Dialog.Title className="leading-6 text-xl font-semibold font-sans">Tom smith</Dialog.Title>
+                            <Dialog.Title className="leading-6 text-xl font-semibold font-sans">{username}</Dialog.Title>
                             <div className="ml-3 flex h-7 items-center">
                               <button
                                 type="button"
