@@ -2,29 +2,40 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import React from "react";
-import { Fragment, useState } from "react";
-import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
+import { AuthRepository } from "@/infrastructure/repositories/AuthRepository";
+import { AuthInterface } from "@/domain/interfaces/authInterface";
+import { AuthService } from "@/domain/usecases/AuthService";
 
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
+const authRepository: AuthInterface = new AuthRepository();
+const auth_interface: AuthInterface = new AuthService(authRepository);
 
 const Page = () => {
-  const people = [
-    { id: 1, name: "Wade Cooper" },
-    { id: 2, name: "Arlene Mccoy" },
-    { id: 3, name: "Devon Webb" },
-    { id: 4, name: "Tom Cook" },
-    { id: 5, name: "Tanya Fox" },
-    { id: 6, name: "Hellen Schmidt" },
-    { id: 7, name: "Caroline Schultz" },
-    { id: 8, name: "Mason Heaney" },
-    { id: 9, name: "Claudie Smitham" },
-    { id: 10, name: "Emil Schaefer" },
-  ];
+  const [username, setUsername] = React.useState({
+    username: "",
+    email: "",
+    password: "",
+  });
 
-  const [selected, setSelected] = useState(people[3]);
+  async function handleSubmit() {
+    try {
+      const login_response = await auth_interface.signup(username.email, username.username, username.password);
+     
+      if(login_response && login_response.code === 200) {
+        window.location.href = "/userlogin";
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  function handleChange(event: any) {
+    setUsername({
+      ...username,
+      [event.target.name]: event.target.value,
+    });
+    console.log(username);
+  }
+
   return (
     <>
       <section className="bg-Lt-gray">
@@ -37,15 +48,34 @@ const Page = () => {
               <h1 className="text-xl font-bold leading-tight tracking-tight ">Create and account</h1>
               <div className="space-y-4 md:space-y-6">
                 <div>
+                  <label className="block mb-2 text-sm font-medium ">Your username</label>
+                  <input
+                    type="text"
+                    name="username"
+                    id="username"
+                    value={username.username}
+                    className="bg-gray-50 border text-Pri-Dark border-gray-300  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5   dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="name@company.com"
+                    onChange={(e) => {
+                      handleChange(e);
+                    }}
+                  />
+                </div>
+                <div>
                   <label className="block mb-2 text-sm font-medium ">Your email</label>
                   <input
                     type="email"
                     name="email"
                     id="email"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    value={username.email}
+                    className="bg-gray-50 border text-Pri-Dark border-gray-300  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5   dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
+                    onChange={(e) => {
+                      handleChange(e);
+                    }}
                   />
                 </div>
+
                 <div>
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                   <input
@@ -53,7 +83,11 @@ const Page = () => {
                     name="password"
                     id="password"
                     placeholder="••••••••"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    value={username.password}
+                    className="bg-gray-50 border text-Pri-Dark border-gray-300  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5   dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    onChange={(e) => {
+                      handleChange(e);
+                    }}
                   />
                 </div>
                 <div>
@@ -63,7 +97,7 @@ const Page = () => {
                     name="confirm-password"
                     id="confirm-password"
                     placeholder="••••••••"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border text-Pri-Dark border-gray-300  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5   dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   />
                 </div>
                 <div className="flex items-start">
@@ -87,6 +121,9 @@ const Page = () => {
                 <button
                   type="submit"
                   className="w-full text-white  bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 bg-Pri-Dark bordertext-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                  onClick={(e) => {
+                    handleSubmit();
+                  }}
                 >
                   Create an account
                 </button>

@@ -2,7 +2,6 @@
 "use client";
 import React from "react";
 import Layout from "../HeroSection/layout";
-import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import { people, actions } from "@/constants/static/HeroSection/HeroSectionStatic";
 
@@ -14,7 +13,7 @@ const Page = () => {
   return (
     <>
       <Layout>
-        <div className="flex justify-center">
+        <div className="flex justify-center bg-Almost-White">
           <div className=" flex flex-row w-3/4 py-12">
             <div className="w-full flex flex-col gap-12">
               <div className=" flex flex-row">
@@ -23,7 +22,7 @@ const Page = () => {
                   <Link href="/usersignup" className="bg-Pri-Dark py-2 px-5 items-center text-white flex justify-center rounded-lg ">
                     Sign up
                   </Link>
-                  <Link href="/userlogin" className="bg-gray-200  py-2 px-5 items-center text-Pri-Dark flex justify-center rounded-lg ">
+                  <Link href="/usersignin" className="bg-gray-200  py-2 px-5 items-center text-Pri-Dark flex justify-center rounded-lg ">
                     {" "}
                     Login
                   </Link>
@@ -31,27 +30,32 @@ const Page = () => {
               </div>
 
               <div className="flex flex-row w-full">
-                <ul role="list" className="divide-y w-full divide-gray-100 overflow-hidden bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
-                  {people.map((person) => (
-                    <li key={person.email} className="relative w-full flex justify-between gap-x-6 px-4 py-5 hover:bg-gray-50 sm:px-6">
-                      <div className="flex min-w-0 gap-x-4">
-                        <img className="h-12 w-12 flex-none rounded-full bg-gray-50" src={person?.image} alt="" />
-                        <div className="min-w-0 flex-auto">
-                          <p className="text-sm font-semibold leading-6 text-gray-900">
-                            <Link href={person.email}>
-                              <span className="absolute inset-x-0 -top-px bottom-0" />
-                              {person.name}
-                            </Link>
-                          </p>
-                          <p className="mt-1 flex text-xs leading-5 text-gray-500">
-                            <a href={`mailto:${person.email}`} className="relative truncate hover:underline">
-                              {person.email}
-                            </a>
-                          </p>
+                <ul role="list" className="divide-y w-full flex flex-col gap-4 divide-gray-100 overflow-hidden  ">
+                  {people.map((person, index) => (
+                    <>
+                      <li key={person.email} className="relative w-full flex justify-between gap-x-6 px-4 py-5 border bg-white 0 sm:px-6">
+                        <div className="flex min-w-0 gap-x-4 bg-white">
+                          <img className="h-12 w-12 flex-none rounded-full " src={person?.image} alt="" />
+                          <div className="min-w-0 flex-auto">
+                            <p className="text-sm font-semibold leading-6 text-gray-900">
+                              <Link href={person.email}>
+                                <span className="absolute inset-x-0 -top-px bottom-0" />
+                                {person.name}
+                              </Link>
+                            </p>
+                            <p className="mt-1 flex text-xs leading-5 text-gray-500">
+                              <a href={`mailto:${person.email}`} className="relative truncate hover:underline">
+                                {person.email}
+                              </a>
+                            </p>
+                            <p>
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro quia id, quas accusamus ad, alias hic quasi veniam blanditiis doloremque iste sint eligendi est
+                              consequuntur perspiciatis quo saepe quidem.
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    
-                    </li>
+                      </li>
+                    </>
                   ))}
                 </ul>
               </div>
