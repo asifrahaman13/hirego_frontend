@@ -6,7 +6,7 @@ const navigation = [
   { name: "Internships", href: "/internships", icon: FolderIcon, current: false },
   { name: "Full time jobs", href: "/fulltimejobs", icon: CalendarIcon, current: false },
   { name: "Contracts", href: "/contracts", icon: DocumentDuplicateIcon, current: false },
-  { name: "My applications", href: "/applications", icon: UsersIcon, current: false },
+  { name: "My applications", href: "/internships/applications", icon: UsersIcon, current: false },
   { name: "Job offers", href: "offers", icon: UsersIcon, current: false },
 ];
 const teams = [

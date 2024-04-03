@@ -35,4 +35,8 @@ export interface Job {
   expiresAt: string;
 }
 
-
+export interface JobApplication {
+  id: string;
+  jobID: string;
+  userID: string;
+}

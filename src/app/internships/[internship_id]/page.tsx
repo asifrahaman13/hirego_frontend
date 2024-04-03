@@ -8,9 +8,11 @@ import { CalendarDaysIcon, CreditCardIcon, EllipsisVerticalIcon, UserCircleIcon,
 import { InternshipRepository } from "@/infrastructure/repositories/InternshipRepository";
 import { InternshipService } from "@/domain/usecases/InternshipService";
 import { Job } from "@/domain/entities/InternshipEntity";
+import { InternshipInterface } from "@/domain/interfaces/internshipInterface";
+import SuccessMessage from "@/components/SuccessMessage/SuccessMessage";
 
 const internshipRepository = new InternshipRepository();
-const internshipInterface = new InternshipService(internshipRepository);
+const internshipInterface: InternshipInterface = new InternshipService(internshipRepository);
 
 const activity = [
   { id: 1, type: "created", person: { name: "Chelsea Hagon" }, date: "7d ago", dateTime: "2023-01-23T10:32" },
@@ -33,6 +35,7 @@ const activity = [
 
 export default function Page({ params }: { params: { internship_id: string } }) {
   const [internship, setInternship] = useState<Job | null>(null);
+  const [message, setMessage] = useState(false);
 
   useEffect(() => {
     async function getInsternDetails() {
@@ -51,8 +54,26 @@ export default function Page({ params }: { params: { internship_id: string } }) 
     getInsternDetails();
   }, [params.internship_id]);
 
+  const [key, setKey] = useState(0);
+
+  async function ApplyForInternship() {
+    try {
+      const access_token = localStorage.getItem("access_token") || null;
+      if (access_token) {
+        const response = await internshipInterface.applyForInternship(access_token, params.internship_id);
+        if (response?.code === 200) {
+          setMessage(true);
+          setKey(key + 1);
+        }
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <Fragment>
+      {message && <SuccessMessage message="You have successfully applied for the internship" key={key} />}
       <DashboardLayout>
         <main className="bg-white rounded-xl">
           <header className="relative isolate pt-16">
@@ -131,7 +152,7 @@ export default function Page({ params }: { params: { internship_id: string } }) 
               {/* Invoice summary */}
               <div className="lg:col-start-3 lg:row-end-1">
                 <h2 className="sr-only">Summary</h2>
-                <div className="rounded-lg bg-gray-50 shadow-sm ring-1 ring-gray-900/5">
+                <div className="rounded-lg bg-white shadow-sm ring-1 ring-gray-900/5">
                   <dl className="flex flex-wrap">
                     <div className="flex-auto pl-6 pt-6">
                       <dt className="text-sm font-semibold leading-6 text-gray-900">Amount</dt>
@@ -265,7 +286,14 @@ export default function Page({ params }: { params: { internship_id: string } }) 
                     </div>
                   </div>
                   <div className="flex flex-row ">
-                    <button className="ml-auto bg-Pri-Dark rounded-lg text-white px-5 py-2.5">Apply now</button>
+                    <button
+                      className="ml-auto bg-Pri-Dark rounded-lg text-white px-5 py-2.5"
+                      onClick={(e) => {
+                        ApplyForInternship();
+                      }}
+                    >
+                      Apply now
+                    </button>
                   </div>
                 </div>
               </div>

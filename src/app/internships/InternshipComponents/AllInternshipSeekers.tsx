@@ -30,6 +30,7 @@ export default function AllInternshipSeekers() {
     <div className="flex w-screen h-screen   flex-row bg-gray-50">
       <div className="w-3/4 flow-root overflow-y-scroll h-full no-scrollbar">
         <div className="-mx-4 -my-2 w-full overflow-x-auto sm:-mx-6 px-12 lg:-mx-8">
+          <div className="text-xl font-sans m-4">Available internships</div>
           <div className="flex flex-col w-full gap-4">
             {internships.map((person) => (
               <>
