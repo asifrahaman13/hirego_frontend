@@ -38,13 +38,19 @@ class InternshipRepository implements InternshipInterface {
     }
   }
 
-  async applyForInternship(access_token: string, id: string) {
+  async applyForInternship(access_token: string, id: string, jobID: string, userID: string, companyName: string, jobTitle: string, description: string, location: string) {
     const backend_url = process.env.NEXT_PUBLIC_BACKEND_URL;
 
     const response = await axios.post(
       `${backend_url}/user/internship/apply`,
       {
         jobId: id,
+        jobID: jobID,
+        userID: userID,
+        companyName: companyName,
+        jobTitle: jobTitle,
+        description: description,
+        location: location,
       },
       {
         headers: {

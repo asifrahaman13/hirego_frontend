@@ -7,7 +7,7 @@ import { Menu, Transition } from "@headlessui/react";
 import { CalendarDaysIcon, CreditCardIcon, EllipsisVerticalIcon, UserCircleIcon, XMarkIcon as XMarkIconMini } from "@heroicons/react/20/solid";
 import { InternshipRepository } from "@/infrastructure/repositories/InternshipRepository";
 import { InternshipService } from "@/domain/usecases/InternshipService";
-import { Job } from "@/domain/entities/InternshipEntity";
+import { Job, JobApplication } from "@/domain/entities/InternshipEntity";
 import { InternshipInterface } from "@/domain/interfaces/internshipInterface";
 import SuccessMessage from "@/components/SuccessMessage/SuccessMessage";
 
@@ -59,8 +59,17 @@ export default function Page({ params }: { params: { internship_id: string } }) 
   async function ApplyForInternship() {
     try {
       const access_token = localStorage.getItem("access_token") || null;
-      if (access_token) {
-        const response = await internshipInterface.applyForInternship(access_token, params.internship_id);
+      if (access_token && internship?.jobID && internship?.userID && internship?.company && internship?.title && internship?.description && internship?.location) {
+        const response = await internshipInterface.applyForInternship(
+          access_token,
+          params.internship_id,
+          internship?.jobID,
+          internship?.userID,
+          internship?.company.name,
+          internship?.title,
+          internship?.description,
+          internship?.location
+        );
         if (response?.code === 200) {
           setMessage(true);
           setKey(key + 1);

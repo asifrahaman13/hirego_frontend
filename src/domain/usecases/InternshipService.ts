@@ -15,8 +15,8 @@ class InternshipService {
     return this.internshipRepository.getInternshipById(access_token, id);
   }
 
-  async applyForInternship(access_token: string, id: string) {
-    return this.internshipRepository.applyForInternship(access_token, id);
+  async applyForInternship(access_token: string, id: string, jobID: string, userID: string, companyName: string, jobTitle: string, description: string, location: string) {
+    return this.internshipRepository.applyForInternship(access_token, id, jobID, userID, companyName, jobTitle, description, location);
   }
 
   async getAppliedInternships(access_token: string) {

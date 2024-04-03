@@ -36,7 +36,11 @@ export interface Job {
 }
 
 export interface JobApplication {
-  id: string;
+  id?: string;
   jobID: string;
   userID: string;
+  companyName: string;
+  jobTitle: string;
+  description: string;
+  location: string;
 }

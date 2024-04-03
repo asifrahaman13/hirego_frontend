@@ -19,7 +19,6 @@ const Page = () => {
   async function handleSubmit() {
     try {
       const login_response = await auth_interface.signup(username.email, username.username, username.password);
-
       if (login_response && login_response.code === 200) {
         window.location.href = "/userlogin";
       }
