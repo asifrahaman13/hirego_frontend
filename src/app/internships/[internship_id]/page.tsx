@@ -3,24 +3,8 @@
 import DashboardLayout from "@/app/profile-dashboard/layout";
 import { classNames } from "@/constants/styles/styles";
 import React, { Fragment, useState, useEffect } from "react";
-import { Dialog, Listbox, Menu, Transition } from "@headlessui/react";
-import {
-  Bars3Icon,
-  CalendarDaysIcon,
-  CreditCardIcon,
-  EllipsisVerticalIcon,
-  FaceFrownIcon,
-  FaceSmileIcon,
-  FireIcon,
-  HandThumbUpIcon,
-  HeartIcon,
-  PaperClipIcon,
-  UserCircleIcon,
-  XMarkIcon as XMarkIconMini,
-} from "@heroicons/react/20/solid";
-import { BellIcon, XMarkIcon as XMarkIconOutline } from "@heroicons/react/24/outline";
-import { CheckCircleIcon } from "@heroicons/react/24/solid";
-
+import { Menu, Transition } from "@headlessui/react";
+import { CalendarDaysIcon, CreditCardIcon, EllipsisVerticalIcon, UserCircleIcon, XMarkIcon as XMarkIconMini } from "@heroicons/react/20/solid";
 import { InternshipRepository } from "@/infrastructure/repositories/InternshipRepository";
 import { InternshipService } from "@/domain/usecases/InternshipService";
 import { Job } from "@/domain/entities/InternshipEntity";
@@ -28,51 +12,6 @@ import { Job } from "@/domain/entities/InternshipEntity";
 const internshipRepository = new InternshipRepository();
 const internshipInterface = new InternshipService(internshipRepository);
 
-const navigation = [
-  { name: "Home", href: "#" },
-  { name: "Invoices", href: "#" },
-  { name: "Clients", href: "#" },
-  { name: "Expenses", href: "#" },
-];
-const invoice = {
-  subTotal: "$8,800.00",
-  tax: "$1,760.00",
-  total: "$10,560.00",
-  items: [
-    {
-      id: 1,
-      title: "Logo redesign",
-      description: "New logo and digital asset playbook.",
-      hours: "20.0",
-      rate: "$100.00",
-      price: "$2,000.00",
-    },
-    {
-      id: 2,
-      title: "Website redesign",
-      description: "Design and program new company website.",
-      hours: "52.0",
-      rate: "$100.00",
-      price: "$5,200.00",
-    },
-    {
-      id: 3,
-      title: "Business cards",
-      description: 'Design and production of 3.5" x 2.0" business cards.',
-      hours: "12.0",
-      rate: "$100.00",
-      price: "$1,200.00",
-    },
-    {
-      id: 4,
-      title: "T-shirt design",
-      description: "Three t-shirt design concepts.",
-      hours: "4.0",
-      rate: "$100.00",
-      price: "$400.00",
-    },
-  ],
-};
 const activity = [
   { id: 1, type: "created", person: { name: "Chelsea Hagon" }, date: "7d ago", dateTime: "2023-01-23T10:32" },
   { id: 2, type: "edited", person: { name: "Chelsea Hagon" }, date: "6d ago", dateTime: "2023-01-23T11:03" },
@@ -91,19 +30,8 @@ const activity = [
   { id: 5, type: "viewed", person: { name: "Alex Curren" }, date: "2d ago", dateTime: "2023-01-24T09:12" },
   { id: 6, type: "paid", person: { name: "Alex Curren" }, date: "1d ago", dateTime: "2023-01-24T09:20" },
 ];
-const moods = [
-  { name: "Excited", value: "excited", icon: FireIcon, iconColor: "text-white", bgColor: "bg-red-500" },
-  { name: "Loved", value: "loved", icon: HeartIcon, iconColor: "text-white", bgColor: "bg-pink-400" },
-  { name: "Happy", value: "happy", icon: FaceSmileIcon, iconColor: "text-white", bgColor: "bg-green-400" },
-  { name: "Sad", value: "sad", icon: FaceFrownIcon, iconColor: "text-white", bgColor: "bg-yellow-400" },
-  { name: "Thumbsy", value: "thumbsy", icon: HandThumbUpIcon, iconColor: "text-white", bgColor: "bg-blue-500" },
-  { name: "I feel nothing", value: null, icon: XMarkIconMini, iconColor: "text-gray-400", bgColor: "bg-transparent" },
-];
 
 export default function Page({ params }: { params: { internship_id: string } }) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [selected, setSelected] = useState(moods[5]);
-
   const [internship, setInternship] = useState<Job | null>(null);
 
   useEffect(() => {
@@ -126,63 +54,6 @@ export default function Page({ params }: { params: { internship_id: string } }) 
   return (
     <Fragment>
       <DashboardLayout>
-        <header className="absolute inset-x-0 top-0 z-50 flex h-16 border-b border-gray-900/10">
-          <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-1 items-center gap-x-6">
-              <button type="button" className="-m-3 p-3 md:hidden" onClick={() => setMobileMenuOpen(true)}>
-                <span className="sr-only">Open main menu</span>
-                <Bars3Icon className="h-5 w-5 text-gray-900" aria-hidden="true" />
-              </button>
-              <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company" />
-            </div>
-            <nav className="hidden md:flex md:gap-x-11 md:text-sm md:font-semibold md:leading-6 md:text-gray-700">
-              {navigation.map((item, itemIdx) => (
-                <a key={itemIdx} href={item.href}>
-                  {item.name}
-                </a>
-              ))}
-            </nav>
-            <div className="flex flex-1 items-center justify-end gap-x-8">
-              <button type="button" className="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500">
-                <span className="sr-only">View notifications</span>
-                <BellIcon className="h-6 w-6" aria-hidden="true" />
-              </button>
-              <a href="#" className="-m-1.5 p-1.5">
-                <span className="sr-only">Your profile</span>
-                <img
-                  className="h-8 w-8 rounded-full bg-gray-800"
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                  alt=""
-                />
-              </a>
-            </div>
-          </div>
-          <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-            <div className="fixed inset-0 z-50" />
-            <Dialog.Panel className="fixed inset-y-0 left-0 z-50 w-full overflow-y-auto bg-white px-4 pb-6 sm:max-w-sm sm:px-6 sm:ring-1 sm:ring-gray-900/10">
-              <div className="-ml-0.5 flex h-16 items-center gap-x-6">
-                <button type="button" className="-m-2.5 p-2.5 text-gray-700" onClick={() => setMobileMenuOpen(false)}>
-                  <span className="sr-only">Close menu</span>
-                  <XMarkIconOutline className="h-6 w-6" aria-hidden="true" />
-                </button>
-                <div className="-ml-0.5">
-                  <a href="#" className="-m-1.5 block p-1.5">
-                    <span className="sr-only">Your Company</span>
-                    <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
-                  </a>
-                </div>
-              </div>
-              <div className="mt-2 space-y-2">
-                {navigation.map((item) => (
-                  <a key={item.name} href={item.href} className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                    {item.name}
-                  </a>
-                ))}
-              </div>
-            </Dialog.Panel>
-          </Dialog>
-        </header>
-
         <main className="bg-white rounded-xl">
           <header className="relative isolate pt-16">
             <div className="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
@@ -202,24 +73,19 @@ export default function Page({ params }: { params: { internship_id: string } }) 
                 <div className="flex items-center gap-x-6">
                   <img src="https://tailwindui.com/img/logos/48x48/tuple.svg" alt="" className="h-16 w-16 flex-none rounded-full ring-1 ring-gray-900/10" />
                   <h1>
-                    <div className="text-sm leading-6 text-gray-500">
+                    <div className="text-xl leading-6 font-semibold">
                       {internship?.title} <span className="text-gray-700"> #{internship?.jobID}</span>
                     </div>
-                    <div className="mt-1 text-base font-semibold leading-6 text-gray-900">{internship?.company.name}</div>
+                    <div className="mt-1 text-base font-semibold leading-6 text-gray-900">@{internship?.company.name}</div>
+                    <div>{internship?.location}</div>
                   </h1>
                 </div>
                 <div className="flex items-center gap-x-4 sm:gap-x-6">
                   <button type="button" className="hidden text-sm font-semibold leading-6 text-gray-900 sm:block">
                     Copy URL
                   </button>
-                  <a href="#" className="hidden text-sm font-semibold leading-6 text-gray-900 sm:block">
-                    Edit
-                  </a>
-                  <a
-                    href="#"
-                    className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                  >
-                    Send
+                  <a href="#" className="rounded-md bg-Pri-Dark px-3 py-2 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ">
+                    Share this
                   </a>
 
                   <Menu as="div" className="relative sm:hidden">
@@ -276,22 +142,27 @@ export default function Page({ params }: { params: { internship_id: string } }) 
                     </div>
                     <div className="flex-none self-end px-6 pt-4">
                       <dt className="sr-only">Status</dt>
-                      <dd className="rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-600 ring-1 ring-inset ring-green-600/20">{internship?.remote===true?"Remote":"Work from office"}</dd>
+                      <dd className="rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-600 ring-1 ring-inset ring-green-600/20">
+                        {internship?.remote === true ? "Remote" : "Work from office"}
+                      </dd>
                     </div>
                     <div className="mt-6 flex w-full flex-none gap-x-4 border-t border-gray-900/5 px-6 pt-6">
                       <dt className="flex-none">
                         <span className="sr-only">Client</span>
                         <UserCircleIcon className="h-6 w-5 text-gray-400" aria-hidden="true" />
                       </dt>
-                      <dd className="text-sm font-medium leading-6 text-gray-900">Alex Curren</dd>
+                      <dd className="text-sm font-medium leading-6 text-gray-900">{internship?.company.name}</dd>
                     </div>
                     <div className="mt-4 flex w-full flex-none gap-x-4 px-6">
                       <dt className="flex-none">
-                        <span className="sr-only">Due date</span>
+                        <span className="sr-only">{internship?.employmentType}</span>
                         <CalendarDaysIcon className="h-6 w-5 text-gray-400" aria-hidden="true" />
                       </dt>
                       <dd className="text-sm leading-6 text-gray-500">
-                        <time dateTime="2023-01-31">January 31, 2023</time>
+                        <time dateTime="2023-01-31">{internship?.company.description}</time>
+                      </dd>
+                      <dd className="text-sm leading-6 text-gray-500">
+                        <time dateTime="2023-01-31">{internship?.company.size}</time>
                       </dd>
                     </div>
                     <div className="mt-4 flex w-full flex-none gap-x-4 px-6">
@@ -299,12 +170,19 @@ export default function Page({ params }: { params: { internship_id: string } }) 
                         <span className="sr-only">Status</span>
                         <CreditCardIcon className="h-6 w-5 text-gray-400" aria-hidden="true" />
                       </dt>
-                      <dd className="text-sm leading-6 text-gray-500">Paid with MasterCard</dd>
+                      <dd className="text-sm leading-6 text-gray-500">{internship?.company.industry}</dd>
+                    </div>
+                    <div className="mt-4 flex w-full flex-none gap-x-4 px-6">
+                      <dt className="flex-none">
+                        <span className="sr-only">Status</span>
+                        <CreditCardIcon className="h-6 w-5 text-gray-400" aria-hidden="true" />
+                      </dt>
+                      <dd className="text-sm leading-6 text-gray-500">{internship?.company.website}</dd>
                     </div>
                   </dl>
                   <div className="mt-6 border-t border-gray-900/5 px-6 py-6">
                     <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-                      Download receipt <span aria-hidden="true">&rarr;</span>
+                      Know more about the company <span aria-hidden="true">&rarr;</span>
                     </a>
                   </div>
                 </div>
@@ -321,49 +199,75 @@ export default function Page({ params }: { params: { internship_id: string } }) 
                     </dd>
                   </div>
                   <div className="mt-2 sm:mt-0 sm:pl-4">
-                    <dt className="inline text-gray-500">Due on</dt>{" "}
                     <dd className="inline text-gray-700">
-                      <time dateTime="2023-31-01">January 31, 2023</time>
+                      <time dateTime="2023-31-01">Employment type: </time>
                     </dd>
-                  </div>
-                  <div className="mt-6 border-t border-gray-900/5 pt-6 sm:pr-4">
-                    <dt className="font-semibold text-gray-900">From</dt>
-                    <dd className="mt-2 text-gray-500">
-                      <span className="font-medium text-gray-900">Acme, Inc.</span>
-                      <br />
-                      7363 Cynthia Pass
-                      <br />
-                      Toronto, ON N3Y 4H8
-                    </dd>
-                  </div>
-                  <div className="mt-8 sm:mt-6 sm:border-t sm:border-gray-900/5 sm:pl-4 sm:pt-6">
-                    <dt className="font-semibold text-gray-900">To</dt>
-                    <dd className="mt-2 text-gray-500">
-                      <span className="font-medium text-gray-900">Tuple, Inc</span>
-                      <br />
-                      886 Walter Street
-                      <br />
-                      New York, NY 12345
-                    </dd>
+                    <dt className="inline text-gray-500">{internship?.employmentType}</dt>{" "}
                   </div>
                 </dl>
-                <table className="mt-16 w-full whitespace-nowrap text-left text-sm leading-6">
-                  <colgroup>
-                    <col className="w-full" />
-                    <col />
-                    <col />
-                    <col />
-                  </colgroup>
-                  <thead className="border-b border-gray-200 text-gray-900">
-                    <tr>
-                      <th scope="col" className="px-0 py-3 font-semibold">
-                        Projects
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody></tbody>
-                  <div className="text-wrap">{internship?.description}</div>
-                </table>
+                <div className="mt-16 w-full whitespace-nowrap text-left text-sm leading-6 flex flex-col gap-4">
+                  <div className="flex flex-col gap-4">
+                    <div className="border-b border-gray-200 text-gray-900">
+                      <div className="px-0 py-3 text-2xl font-sans font-semibold">More about this role</div>
+                    </div>
+                    <div className="flex flex-col">
+                      <div className="text-wrap text-gray-900">{internship?.description}</div>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-4">
+                    <div className="border-b border-gray-200 text-gray-900">
+                      <div className="px-0 py-3 font-semibold">Desired Skills</div>
+                    </div>
+                    <div>
+                      {internship?.skills.map((item, index) => (
+                        <>
+                          <p>- {item}</p>
+                        </>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-4">
+                    <div className="border-b border-gray-200 text-gray-900">
+                      <div className="px-0 py-3 font-semibold">Requirements</div>
+                    </div>
+                    <div>
+                      {internship?.requirements.map((item, index) => (
+                        <>
+                          <p>- {item}</p>
+                        </>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-4">
+                    <div className="border-b border-gray-200 text-gray-900">
+                      <div className="px-0 py-3 font-semibold">Responsibilities</div>
+                    </div>
+                    <div>
+                      {internship?.responsibilities.map((item, index) => (
+                        <>
+                          <p>- {item}</p>
+                        </>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-4">
+                    <div className="border-b border-gray-200 text-gray-900">
+                      <div className="px-0 py-3 font-semibold">Benifits</div>
+                    </div>
+                    <div>
+                      {internship?.benefits.map((item, index) => (
+                        <>
+                          <p>- {item}</p>
+                        </>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="flex flex-row ">
+                    <button className="ml-auto bg-Pri-Dark rounded-lg text-white px-5 py-2.5">Apply now</button>
+                  </div>
+                </div>
               </div>
 
               <div className="lg:col-start-3">

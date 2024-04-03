@@ -1,9 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { people } from "@/constants/static/HeroSection/HeroSectionStatic";
 import { useEffect, useState } from "react";
-import InternDetails from "./InternDetails";
-
 import { InternshipRepository } from "@/infrastructure/repositories/InternshipRepository";
 import { InternshipService } from "@/domain/usecases/InternshipService";
 import { Job } from "@/domain/entities/InternshipEntity";
@@ -13,16 +10,6 @@ const internshipRepository = new InternshipRepository();
 const internshipInterface = new InternshipService(internshipRepository);
 
 export default function AllInternshipSeekers() {
-  const [blur, setBlur] = useState(false);
-
-  const [jobID, setUsername] = useState("");
-  const [keyIncrement, setKeyIncrement] = useState(0);
-
-  function handleUserNameChange(person: string) {
-    setUsername(person);
-    setKeyIncrement(keyIncrement + 1);
-  }
-
   const [internships, setInternships] = useState<Job[]>([]);
 
   useEffect(() => {
@@ -80,8 +67,6 @@ export default function AllInternshipSeekers() {
           </div>
         </div>
       </div>
-
-      {jobID && <InternDetails blur={blur} jobID={jobID} should_open={true} key={keyIncrement} />}
     </div>
   );
 }
