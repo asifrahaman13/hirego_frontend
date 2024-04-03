@@ -38,8 +38,8 @@ export default function AllInternshipSeekers() {
                   <div key={person.jobID} className="  flex gap-8 ">
                     <div className="w-full  p-3 flex flex-row gap-2 items-center">
                       <img className="h-11  rounded-full" src={person.jobID} alt="" />
-                      <div> {person.title}</div>
-                      <div className="text-sm">{person.title}</div>
+                      <div className="font-semibold text-lg font-sans" > {person.title}</div>
+                      <div className="text-sm">{person.jobID}</div>
                     </div>
 
                     <div className="p-3 flex items-center gap-2">
