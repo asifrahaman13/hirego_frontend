@@ -34,7 +34,7 @@ export default function AllInternshipSeekers() {
           <div className="flex flex-col w-full gap-4">
             {internships.map((person) => (
               <>
-                <Link href={`/internships/${person.jobID}`} className="bg-white w-full border gap-4 flex flex-col rounded-lg px-4 py-4">
+                <Link href={`/user/dashboard/internships/${person.jobID}`} className="bg-white w-full border gap-4 flex flex-col rounded-lg px-4 py-4">
                   <div key={person.jobID} className="  flex gap-8 ">
                     <div className="w-full  p-3 flex flex-row gap-2 items-center">
                       <img className="h-11  rounded-full" src={person.jobID} alt="" />

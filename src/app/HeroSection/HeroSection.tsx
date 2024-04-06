@@ -7,14 +7,9 @@ import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { callsToAction, navigation } from "@/constants/static/HeroSection/HeroSectionStatic";
-
 import Link from "next/link";
-import Banner from "@/components/Banner";
+import { userNavigation } from "@/constants/static/dashboard/Dashboard";
 
-const userNavigation = [
-  { name: "Your profile", href: "/profile-dashboard" },
-  { name: "Sign out", href: "#" },
-];
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
@@ -30,6 +25,11 @@ export default function HeroSection() {
       setIsSignedIn(true);
     }
   }, []);
+
+  function handleSignout() {
+    localStorage.removeItem("access_token");
+    window.location.href = "/";
+  }
 
   return (
     <>
@@ -154,14 +154,25 @@ export default function HeroSection() {
                   >
                     <Menu.Items className="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
                       {userNavigation.map((item) => (
-                        <Menu.Item key={item.name}>
-                          {({ active }) => (
-                            <Link href={item.href} className={classNames(active ? "bg-gray-50" : "", "block px-3 py-1 text-sm leading-6 text-gray-900")}>
-                              {item.name}
-                            </Link>
-                          )}
-                        </Menu.Item>
+                        <>
+                          {" "}
+                          <Menu.Item key={item.name}>
+                            {({ active }) => (
+                              <Link href={item.href} className={classNames(active ? "bg-gray-50" : "", "block px-3 py-1 text-sm leading-6 text-gray-900")}>
+                                {item.name}
+                              </Link>
+                            )}
+                          </Menu.Item>
+                        </>
                       ))}
+                      <button
+                        className="px-3"
+                        onClick={() => {
+                          handleSignout();
+                        }}
+                      >
+                        Sign out
+                      </button>
                     </Menu.Items>
                   </Transition>
                 </Menu>

@@ -1,7 +1,7 @@
 export interface Job {
   id: string;
   jobID: string;
-  userID: string;
+  username: string;
   title: string;
   description: string;
   responsibilities: string[];
@@ -38,9 +38,29 @@ export interface Job {
 export interface JobApplication {
   id?: string;
   jobID: string;
-  userID: string;
+  Username: string;
   companyName: string;
-  jobTitle: string;
+  title: string;
   description: string;
   location: string;
+}
+
+interface Notification {
+  string: string;
+}
+
+export interface User {
+  id: string;
+  username: string;
+  email: string;
+  firstname: string;
+  lastname: string;
+  phonenumber: string;
+  dob: string;
+  address: string;
+  profilepicture: string;
+  country: string;
+  state: string;
+  pushnotification: boolean;
+  Notifications: Notification;
 }

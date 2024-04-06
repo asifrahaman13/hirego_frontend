@@ -1,26 +1,25 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { AuthRepository } from "@/infrastructure/repositories/AuthRepository";
 import { AuthInterface } from "@/domain/interfaces/authInterface";
 import { AuthService } from "@/domain/usecases/AuthService";
-
 const authRepository: AuthInterface = new AuthRepository();
 const auth_interface: AuthInterface = new AuthService(authRepository);
 
 const Page = () => {
   const [username, setUsername] = React.useState({
     username: "",
+    email: "",
     password: "",
   });
 
   async function handleSubmit() {
     try {
-      const login_response = await auth_interface.login(username.username, username.password);
+      const login_response = await auth_interface.hr_signup(username.email, username.username, username.password);
       if (login_response && login_response.code === 200) {
-        localStorage.setItem("access_token", login_response.token);
-        window.location.href = "/user/dashboard";
+        window.location.href = "/userlogin";
       }
     } catch (error) {
       console.log(error);
@@ -44,7 +43,7 @@ const Page = () => {
           </a>
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0  ">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 className="text-xl font-bold leading-tight tracking-tight ">Sign in to your account.</h1>
+              <h1 className="text-xl font-bold leading-tight tracking-tight ">Create and account</h1>
               <div className="space-y-4 md:space-y-6">
                 <div>
                   <label className="block mb-2 text-sm font-medium ">Your username</label>
@@ -53,6 +52,20 @@ const Page = () => {
                     name="username"
                     id="username"
                     value={username.username}
+                    className="bg-gray-50 border text-Pri-Dark border-gray-300  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5   dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="name@company.com"
+                    onChange={(e) => {
+                      handleChange(e);
+                    }}
+                  />
+                </div>
+                <div>
+                  <label className="block mb-2 text-sm font-medium ">Your email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    value={username.email}
                     className="bg-gray-50 border text-Pri-Dark border-gray-300  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5   dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
                     onChange={(e) => {
@@ -110,7 +123,7 @@ const Page = () => {
                     handleSubmit();
                   }}
                 >
-                  Sign in
+                  Create an account
                 </button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Already have an account?{" "}

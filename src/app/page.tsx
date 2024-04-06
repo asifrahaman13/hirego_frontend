@@ -1,22 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { useState } from "react";
-import { Dialog } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Fragment } from "react";
-import { Popover, Transition } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { callsToAction, navigation } from "@/constants/static/HeroSection/HeroSectionStatic";
 import Overview from "./HeroSection/Overview";
 import Banner from "./HeroSection/Banner";
 import UseCase from "./HeroSection/UseCase";
 import FooterComponent from "./HeroSection/FooterComponent";
-import Link from "next/link";
 import HeroSection from "./HeroSection/HeroSection";
 
 export default function Page() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   return (
     <div className="bg-white min-h-screen">
       <HeroSection />

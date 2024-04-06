@@ -1,6 +1,5 @@
-import React from "react";
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
-import DashboardLayout from "../profile-dashboard/layout";
+import DashboardLayout from "../user/dashboard/layout";
 const Page = () => {
   return (
     <>

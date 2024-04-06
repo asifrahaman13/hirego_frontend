@@ -1,5 +1,4 @@
-import React from "react";
-import DashboardLayout from "../profile-dashboard/layout";
+import DashboardLayout from "../user/dashboard/layout";
 
 const page = () => {
   return (

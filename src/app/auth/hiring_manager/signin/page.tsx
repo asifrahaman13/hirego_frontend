@@ -17,10 +17,10 @@ const Page = () => {
 
   async function handleSubmit() {
     try {
-      const login_response = await auth_interface.login(username.username, username.password);
+      const login_response = await auth_interface.hr_login(username.username, username.password);
       if (login_response && login_response.code === 200) {
         localStorage.setItem("access_token", login_response.token);
-        window.location.href = "/user/dashboard";
+        window.location.href = "/hiring_manager/dashboard";
       }
     } catch (error) {
       console.log(error);
