@@ -13,12 +13,12 @@ const internshipInterface = new InternshipService(internshipRepository);
 
 interface InternDetailsProps {
   blur: boolean;
-  jobID: string;
+  username: string;
   should_open: boolean;
 }
 
-const InternDetails: React.FC<InternDetailsProps> = ({ blur, jobID, should_open }) => {
-  console.log(jobID)
+const InternDetails: React.FC<InternDetailsProps> = ({ blur, username, should_open }) => {
+ 
   const [open, setOpen] = useState(true);
   const [internship, setInternship] = useState<Job | null>(null);
 
@@ -27,7 +27,7 @@ const InternDetails: React.FC<InternDetailsProps> = ({ blur, jobID, should_open 
       try {
         const access_token = localStorage.getItem("access_token") || null;
         if (access_token) {
-          const response = await internshipInterface.getInternshipById(access_token, jobID);
+          const response = await internshipInterface.getInternshipById(access_token, "");
           if (response?.code === 200) {
             setInternship(response.data);
           }
@@ -37,7 +37,7 @@ const InternDetails: React.FC<InternDetailsProps> = ({ blur, jobID, should_open 
       }
     }
     getInsternDetails();
-  }, [jobID]);
+  }, [username]);
 
   return (
     <>
@@ -62,7 +62,7 @@ const InternDetails: React.FC<InternDetailsProps> = ({ blur, jobID, should_open 
                       <div className="h-0 flex-1 overflow-y-auto">
                         <div className="px-4 py-6 sm:px-6">
                           <div className="flex items-center justify-between">
-                            <Dialog.Title className="leading-6 text-xl font-semibold font-sans">{internship?.title}</Dialog.Title>
+                            <Dialog.Title className="leading-6 text-xl font-semibold font-sans">{username}sadf</Dialog.Title>
                             <div className="ml-3 flex h-7 items-center">
                               <button
                                 type="button"

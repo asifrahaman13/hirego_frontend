@@ -28,16 +28,16 @@ const Page = () => {
     <>
       <div className="h-screen">
         <div className="text-xl font-sans font-semibold m-4">All job postings</div>
-        <ul role="list" className="divide-y  rounded-lg  divide-gray-100 flex flex-col gap-12">
+        <ul role="list" className="divide-y  rounded-lg  divide-gray-100 flex flex-col gap-4">
           {myInternshipApplication?.map((person) => (
             <Link href={`/hiring_manager/dashboard/internships/applicants/${person.jobID}`} key={person.jobID}>
-              <li key={person.jobID} className="flex justify-between px-8 bg-white flex-col gap-6 py-5 ">
+              <li key={person.jobID} className="flex justify-between px-8 border rounded-lg bg-white flex-col gap-2 py-8 ">
                 <div className="flex min-w-0 gap-x-4 flex-col gap-2">
-                  <div className=" py-2.5 font-semibold font-sans text-gray-600">{person.companyName}</div>
+                  <div className=" font-semibold font-sans text-gray-600">{person.companyName}</div>
                   <div className="flex gap-6 items-center">
                     {" "}
-                    <div className="px-5 py-2.5 bg-purple-50 text-purple-600 rounded-lg">{person.title}</div>
-                    <div className="px-5 py-2.5 bg-blue-50 text-blue-600 rounded-lg">{person.location}</div>
+                    <div className="px-5 py-2 bg-purple-50 text-purple-600 rounded-lg">{person.title}</div>
+                    <div className="px-5 py-2 bg-blue-50 text-blue-600 rounded-lg">{person.location}</div>
                   </div>
 
                   {/* <img className="h-12 w-12 flex-none rounded-full bg-gray-50" src={person.imageUrl} alt="" /> */}

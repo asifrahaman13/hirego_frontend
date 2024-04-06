@@ -35,7 +35,7 @@ const Page = () => {
                 <div className=" py-2.5 font-semibold font-sans text-gray-600">{person.companyName}</div>
                 <div className="flex gap-6 items-center">
                   {" "}
-                  <div className="px-5 py-2.5 bg-purple-50 text-purple-600 rounded-lg">{person.jobTitle}</div>
+                  <div className="px-5 py-2.5 bg-purple-50 text-purple-600 rounded-lg">{person.title}</div>
                   <div className="px-5 py-2.5 bg-blue-50 text-blue-600 rounded-lg">{person.location}</div>
                 </div>
 

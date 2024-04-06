@@ -11,6 +11,7 @@ import { Menu, Transition } from "@headlessui/react";
 import { CalendarDaysIcon, CreditCardIcon, EllipsisVerticalIcon, UserCircleIcon } from "@heroicons/react/20/solid";
 import { Fragment, useEffect, useState } from "react";
 
+
 const internshipRepository = new InternshipRepository();
 const internshipInterface: InternshipInterface = new InternshipService(internshipRepository);
 
@@ -86,8 +87,8 @@ export default function Page({ params }: { params: { internship_id: string } }) 
   return (
     <Fragment>
       {message && <SuccessMessage message="You have successfully applied for the internship" key={key} />}
-
       <main className="bg-white rounded-xl">
+
         <header className="relative isolate pt-16">
           <div className="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
             <div className="absolute left-16 top-full -mt-16 transform-gpu opacity-50 blur-3xl xl:left-1/2 xl:-ml-80">
