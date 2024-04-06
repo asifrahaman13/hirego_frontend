@@ -30,7 +30,7 @@ const Page = () => {
         <div className="h-screen">
           <div className="text-xl font-sans font-semibold m-4">My applications</div>
           <ul role="list" className="divide-y  rounded-lg  divide-gray-100 flex flex-col gap-12">
-            {myInternshipApplication.map((person) => (
+            {myInternshipApplication?.map((person) => (
               <li key={person.jobID} className="flex justify-between px-8 bg-white flex-col gap-6 py-5 ">
                 <div className="flex min-w-0 gap-x-4 flex-col gap-2">
                   <div className=" py-2.5 font-semibold font-sans text-gray-600">{person.companyName}</div>
